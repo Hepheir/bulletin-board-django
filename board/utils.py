@@ -11,7 +11,7 @@ def Post_to_JSON(post: Post):
     return {
         'author': User_to_JSON(post.author),
         'content': post.content,
-        'replies': Comment.objects.filter(post=post),
+        'comments': list(map(Comment_to_JSON, Comment.objects.filter(post=post))),
     }
 
 
@@ -19,7 +19,7 @@ def Comment_to_JSON(comment: Comment):
     return {
         'author': User_to_JSON(comment.author),
         'content': comment.content,
-        'replies': Reply.objects.filter(comment=comment),
+        'replies': list(map(Reply_to_JSON, Reply.objects.filter(comment=comment))),
     }
 
 
