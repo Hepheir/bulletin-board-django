@@ -11,5 +11,4 @@ def index(request: HttpRequest) -> HttpResponse:
     context = {
         'posts': list(map(Post_to_JSON, Post.objects.all())),
     }
-    print(context)
     return render(request, "board.html", context)
