@@ -7,9 +7,9 @@
         <p class="card-text">{{ post.content }}</p>
     </div>
     <div class="card-body">
-        <small>총 {{ post.comments.length }}개의 댓글</small>
+        <small>총 {{ post.comments | length }}개의 댓글</small>
         <ul class="list-group list-group-flush">
-            {% for comment in comments %}
+            {% for comment in post.comments %}
                 {% include "comment.html" with comment=comment %}
             {% endfor %}
         </ul>
