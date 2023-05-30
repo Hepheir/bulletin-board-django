@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
-from .forms import UserForm
+from .forms import UserForm, PostForm
 from .models import User, Post
 from .utils import Post_to_JSON
 
@@ -38,7 +38,7 @@ class UserListView(ListView):
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['title', 'content', 'created_by']
+    form_class = PostForm
     success_url = '/'
 
 
