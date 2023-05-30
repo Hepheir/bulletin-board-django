@@ -24,6 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", lambda request: redirect('board/', permanent=True)),
     path("board/", views.BoardView.as_view()),
+    path("board/post/create/", views.PostCreateView.as_view()),
     path("board/post/<int:pk>/", views.PostDetailView.as_view()),
     path("board/user/create/", views.UserCreateView.as_view()),
     path("board/user/list/", views.UserListView.as_view()),
