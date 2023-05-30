@@ -1,0 +1,35 @@
+<div class="card my-3">
+    <div class="card-header">
+        {{ post.author.username }}
+        <small class="text-secondary">님이 작성한 게시글</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ post.content }}</p>
+    </div>
+    <div class="card-body">
+        <small>총 {{ post.comments | length }}개의 댓글</small>
+        <ul class="list-group list-group-flush">
+            {% for comment in post.comments %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">{{ comment.author.username }}</div>
+                    <div>{{ comment.content }}</div>
+                    <div class="my-2 me-auto">
+                        <ul class="list-group list-group-flush">
+                            {% for reply in comment.replies %}
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">{{ reply.author.username }}</div>
+                                    {{ reply.content }}
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <span class="badge bg-secondary rounded-pill">{{ comment.replies | length }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
