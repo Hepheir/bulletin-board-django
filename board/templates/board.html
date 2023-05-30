@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container py-3">
         {% for post in posts %}
-            {% include "post.html" with post=post %}
+            {% include "common/post_detail.html" %}
         {% endfor %}
     </div>
 {% endblock %}
