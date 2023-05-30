@@ -1,6 +1,9 @@
+from typing import Any, Dict
+
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
+from django.views.generic.detail import DetailView
 
 from .models import Post
 from .utils import Post_to_JSON
@@ -16,4 +19,14 @@ class BoardView(View):
         context = {
             'posts': list(map(Post_to_JSON, Post.objects.all())),
         }
+        return context
+
+
+class PostDetailView(DetailView):
+    model = Post
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        post: Post = kwargs['object']
+        context = super().get_context_data(**kwargs)
+        context['post'] = Post_to_JSON(post)
         return context
