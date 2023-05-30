@@ -11,6 +11,7 @@ class User(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    title = models.CharField(null=False, max_length=80)
     content = models.CharField(max_length=1000)
     created_at = models.DateTimeField(null=False, auto_now_add=True)
 
