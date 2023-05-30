@@ -22,4 +22,5 @@ from board import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("board/", views.BoardView.as_view()),
+    path("board/post/<int:pk>/", views.PostDetailView.as_view()),
 ]
