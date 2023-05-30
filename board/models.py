@@ -8,6 +8,9 @@ class User(models.Model):
     password = models.CharField(null=False, max_length=16)
     created_at = models.DateTimeField(null=False, auto_now_add=True)
 
+    def __str__(self) -> str:
+        return self.username
+
 
 class Post(models.Model):
     title = models.CharField(null=False, max_length=80)
