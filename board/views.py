@@ -41,6 +41,11 @@ class PostCreateView(CreateView):
     success_url = '/'
 
 
+class PostListView(ListView):
+    model = Post
+    paginate_by = 100
+
+
 class PostDetailView(DetailView):
     model = Post
 
