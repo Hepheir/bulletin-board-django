@@ -7,7 +7,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
-from .models import Post, User
+from .forms import UserForm
+from .models import User, Post
 from .utils import Post_to_JSON
 
 # Create your views here.
@@ -26,7 +27,7 @@ class BoardView(View):
 
 class UserCreateView(CreateView):
     model = User
-    fields = ['username', 'password']
+    form_class = UserForm
     success_url = '/'
 
 
