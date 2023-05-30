@@ -35,6 +35,12 @@ class UserListView(ListView):
     paginate_by = 100
 
 
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content', 'created_by']
+    success_url = '/'
+
+
 class PostDetailView(DetailView):
     model = Post
 
