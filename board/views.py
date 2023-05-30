@@ -5,6 +5,7 @@ from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 from .models import Post, User
 from .utils import Post_to_JSON
@@ -27,6 +28,11 @@ class UserCreateView(CreateView):
     model = User
     fields = ['username', 'password']
     success_url = '/'
+
+
+class UserListView(ListView):
+    model = User
+    paginate_by = 100
 
 
 class PostDetailView(DetailView):
