@@ -4,8 +4,9 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 
-from .models import Post
+from .models import Post, User
 from .utils import Post_to_JSON
 
 # Create your views here.
@@ -20,6 +21,12 @@ class BoardView(View):
             'posts': list(map(Post_to_JSON, Post.objects.all())),
         }
         return context
+
+
+class UserCreateView(CreateView):
+    model = User
+    fields = ['username', 'password']
+    success_url = 'board/'
 
 
 class PostDetailView(DetailView):
