@@ -26,7 +26,7 @@ class BoardView(View):
 class UserCreateView(CreateView):
     model = User
     fields = ['username', 'password']
-    success_url = 'board/'
+    success_url = '/'
 
 
 class PostDetailView(DetailView):
