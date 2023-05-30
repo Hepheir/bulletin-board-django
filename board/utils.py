@@ -3,7 +3,7 @@ from .models import *
 
 def User_to_JSON(user: User):
     return {
-        'name': user.username,
+        'username': user.username,
     }
 
 
