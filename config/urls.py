@@ -28,6 +28,7 @@ urlpatterns = [
     path("board/post/list/", views.PostListView.as_view()),
     path("board/post/<int:pk>/", views.PostDetailView.as_view()),
     path("board/post/<int:pk>/update/", views.PostUpdateView.as_view()),
+    path("board/comment/create/", views.CommentCreateView.as_view()),
     path("board/user/create/", views.UserCreateView.as_view()),
     path("board/user/list/", views.UserListView.as_view()),
 ]
