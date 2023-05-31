@@ -22,6 +22,9 @@ class Post(models.Model):
     def comments(self):
         return Comment.objects.filter(post=self)
 
+    def __str__(self) -> str:
+        return f'{self.title} ({self.created_by})'
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, null=False, on_delete=models.CASCADE)
@@ -32,6 +35,9 @@ class Comment(models.Model):
     @property
     def replies(self):
         return Reply.objects.filter(comment=self)
+
+    def __str__(self) -> str:
+        return f'{self.content} ({self.created_by})'
 
 
 class Reply(models.Model):
