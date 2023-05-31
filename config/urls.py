@@ -31,6 +31,7 @@ urlpatterns = [
     path("board/comment/create/", views.CommentCreateView.as_view()),
     path("board/comment/<int:pk>/update/", views.CommentUpdateView.as_view()),
     path("board/reply/create/", views.ReplyCreateView.as_view()),
+    path("board/reply/<int:pk>/update/", views.ReplyUpdateView.as_view()),
     path("board/user/create/", views.UserCreateView.as_view()),
     path("board/user/list/", views.UserListView.as_view()),
 ]
