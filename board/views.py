@@ -70,3 +70,9 @@ class ReplyCreateView(CreateView):
     model = Reply
     form_class = ReplyForm
     success_url = '/'
+
+
+class ReplyUpdateView(UpdateView):
+    model = Reply
+    form_class = ReplyForm
+    success_url = '/'
