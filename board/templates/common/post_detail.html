@@ -17,6 +17,9 @@
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">{{ comment.created_by.username }}</div>
                     <div>{{ comment.content }}</div>
+                    <a class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="/board/reply/create/">
+                        <small>답글 쓰기</small>
+                    </a>
                     <div class="my-2 me-auto">
                         <ul class="list-group list-group-flush">
                             {% for reply in comment.replies %}
@@ -38,12 +41,12 @@
     <div class="card-footer d-flex align-items-center">
         <div class="ms-auto"></div>
         <div class="ms-3">
-            <a class="nav-link" href="/board/comment/create/">
+            <a href="/board/comment/create/">
                 <button class="btn btn-outline-secondary" type="button">댓글 쓰기</button>
             </a>
         </div>
         <div class="ms-3">
-            <a class="nav-link" href="/board/post/{{ post.pk }}/update/">
+            <a href="/board/post/{{ post.pk }}/update/">
                 <button class="btn btn-outline-secondary" type="button">수정</button>
             </a>
         </div>
