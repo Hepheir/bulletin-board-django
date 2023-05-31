@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
 from .forms import UserForm, PostForm
@@ -48,3 +48,9 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm
+    success_url = '/'
