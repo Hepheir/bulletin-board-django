@@ -1,5 +1,3 @@
-from typing import Any, Dict
-
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
@@ -7,8 +5,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
-from .forms import UserForm, PostForm
-from .models import User, Post
+from .forms import *
+from .models import *
 
 # Create your views here.
 
