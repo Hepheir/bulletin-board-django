@@ -58,3 +58,9 @@ class CommentCreateView(CreateView):
     model = Comment
     form_class = CommentForm
     success_url = '/'
+
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    form_class = CommentForm
+    success_url = '/'
