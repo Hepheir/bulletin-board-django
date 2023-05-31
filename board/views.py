@@ -9,7 +9,6 @@ from django.views.generic.list import ListView
 
 from .forms import UserForm, PostForm
 from .models import User, Post
-from .utils import Post_to_JSON
 
 # Create your views here.
 
@@ -20,7 +19,7 @@ class BoardView(View):
 
     def get_context_data(self, **kwargs):
         context = {
-            'posts': list(map(Post_to_JSON, Post.objects.all())),
+            'posts': Post.objects.all(),
         }
         return context
 
@@ -49,9 +48,3 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        post: Post = kwargs['object']
-        context = super().get_context_data(**kwargs)
-        context['post'] = Post_to_JSON(post)
-        return context
