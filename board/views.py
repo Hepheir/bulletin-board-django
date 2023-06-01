@@ -24,7 +24,7 @@ class BoardView(View):
 
 class UserCreateView(CreateView):
     model = User
-    form_class = UserForm
+    form_class = UserCreateForm
     success_url = '/'
 
 
@@ -35,7 +35,7 @@ class UserListView(ListView):
 
 class PostCreateView(CreateView):
     model = Post
-    form_class = PostForm
+    form_class = PostCreateForm
     success_url = '/'
 
 
@@ -50,29 +50,29 @@ class PostDetailView(DetailView):
 
 class PostUpdateView(UpdateView):
     model = Post
-    form_class = PostForm
+    form_class = PostUpdateForm
     success_url = '/'
 
 
 class CommentCreateView(CreateView):
     model = Comment
-    form_class = CommentForm
+    form_class = CommentCreateForm
     success_url = '/'
 
 
 class CommentUpdateView(UpdateView):
     model = Comment
-    form_class = CommentForm
+    form_class = CommentUpdateForm
     success_url = '/'
 
 
 class ReplyCreateView(CreateView):
     model = Reply
-    form_class = ReplyForm
+    form_class = ReplyCreateForm
     success_url = '/'
 
 
 class ReplyUpdateView(UpdateView):
     model = Reply
-    form_class = ReplyForm
+    form_class = ReplyUpdateForm
     success_url = '/'
