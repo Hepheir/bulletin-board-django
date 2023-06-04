@@ -11,10 +11,17 @@ class UserManager(BaseUserManager):
     def get_by_natural_key(self, username: str | None):
         return super().get_by_natural_key(username)
 
-    def create_superuser(self, username: str | None, password: str | None) -> User:
+    def create_user(self, username: str | None, password: str | None) -> User:
+        if not username:
+            raise ValueError('username is required.')
         user: User
         user = self.model(username=username)
         user.set_password(password)
+        user.save(using=self.db)
+        return user
+
+    def create_superuser(self, username: str | None, password: str | None) -> User:
+        user = self.create_user(username, password)
         user.is_admin = True
         user.save()
         return user
