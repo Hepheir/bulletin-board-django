@@ -15,6 +15,7 @@ class UserManager(BaseUserManager):
         user: User
         user = self.model(username=username)
         user.set_password(password)
+        user.is_admin = True
         user.save()
         return user
 
@@ -22,6 +23,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(null=False, max_length=16, unique=True)
     created_at = models.DateTimeField(null=False, auto_now_add=True)
+    is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
 
