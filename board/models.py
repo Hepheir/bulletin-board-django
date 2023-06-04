@@ -30,6 +30,10 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
+    @property
+    def is_staff(self) -> bool:
+        return self.is_admin
+
     def __str__(self) -> str:
         return self.username
 
