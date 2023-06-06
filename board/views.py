@@ -59,7 +59,8 @@ class PostUpdateView(UpdateView):
 
 
 class PostDeleteView(DeleteView):
-    pass
+    model = Post
+    success_url = '/'
 
 
 class CommentCreateView(CreateView):
@@ -75,7 +76,8 @@ class CommentUpdateView(UpdateView):
 
 
 class CommentDeleteView(DeleteView):
-    pass
+    model = Comment
+    success_url = '/'
 
 
 class ReplyCreateView(CreateView):
@@ -91,4 +93,5 @@ class ReplyUpdateView(UpdateView):
 
 
 class ReplyDeleteView(DeleteView):
-    pass
+    model = Reply
+    success_url = '/'
