@@ -9,13 +9,9 @@ class UserCreateForm(forms.ModelForm):
         fields = ['username', 'password']
 
 
-class UserLoginForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'password']
-        widgets = {
-            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
-        }
+class UserLoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 class PostCreateForm(forms.ModelForm):
