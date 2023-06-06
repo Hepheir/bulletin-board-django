@@ -35,4 +35,5 @@ urlpatterns = [
     path("board/user/create/", views.UserCreateView.as_view(), name="user/create"),
     path("board/user/list/", views.UserListView.as_view(), name="user/list"),
     path("board/user/login/", views.UserLoginView.as_view(), name="user/login"),
+    path("board/user/logout/", views.UserLogoutView.as_view(), name="user/logout"),
 ]
