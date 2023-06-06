@@ -1,3 +1,6 @@
+# Django secure
+secret.json
+
 # Poetry dependency management
 poetry.lock
 
