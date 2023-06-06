@@ -35,48 +35,18 @@
             box-sizing: border-box;
         }
 
-        .rainbow {
-            min-height: 100%;
-            background:
-                linear-gradient(rgba(255, 0, 0, 1) 0%, rgba(255, 154, 0, 1) 10%, rgba(208, 222, 33, 1) 20%, rgba(79, 220, 74, 1) 30%, rgba(63, 218, 216, 1) 40%, rgba(47, 201, 226, 1) 50%, rgba(28, 127, 238, 1) 60%, rgba(95, 21, 242, 1) 70%, rgba(186, 12, 248, 1) 80%, rgba(251, 7, 217, 1) 90%, rgba(255, 0, 0, 1) 100%) 0 0/100% 200%;
-            animation: rainbow-fx 2s linear infinite;
-        }
-
-        @keyframes rainbow-fx {
-            to {
-                background-position: 0 -200%
-            }
+        #body {
+            background-image: url("https://i.pinimg.com/originals/28/fe/f9/28fef9ece742153ea400bcae2f1f9d90.jpg");
+            background-repeat: repeat;
         }
     </style>
 </head>
 
-<body class="rainbow">
-    <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">장고로 만든 게시판</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/board/post/list/">포스트</a>
-                    </li>
-                    <li class="nav-item me-auto">
-                        <a class="nav-link" href="/board/user/list/">사용자</a>
-                    </li>
-                </ul>
-                <div>
-                    <a class="nav-link" href="/board/post/create/">
-                        <button class="btn btn-outline-secondary" type="button">포스트 쓰기</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    {% block content %}{% endblock %}
+<body class="bg-light">
+    {% include "common/navbar.html" %}
+    <div id="body">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 
 </html>
