@@ -34,4 +34,5 @@ urlpatterns = [
     path("board/reply/<int:pk>/update/", views.ReplyUpdateView.as_view(), name="reply/update"),
     path("board/user/create/", views.UserCreateView.as_view(), name="user/create"),
     path("board/user/list/", views.UserListView.as_view(), name="user/list"),
+    path("board/user/login/", views.UserLoginView.as_view(), name="user/login"),
 ]
