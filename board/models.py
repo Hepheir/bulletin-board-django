@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 
@@ -25,6 +26,20 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save()
         return user
+
+
+class UserAuth:
+    def authenticate(self, **kwargs) -> None | User:
+        username = kwargs.get('username')
+        password = kwargs.get('password')
+        try:
+            user: User = get_user_model().objects.get(username=username)
+        except:
+            return None
+        if user.check_password(password):
+            return user
+        else:
+            return None
 
 
 class User(AbstractBaseUser):
