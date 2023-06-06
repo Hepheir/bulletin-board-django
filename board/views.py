@@ -1,7 +1,5 @@
-from django.contrib import auth
-from django.contrib.auth import views
 from django.forms.models import BaseModelForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
 from django.views.generic.detail import DetailView
@@ -37,40 +35,6 @@ class UserCreateView(CreateView):
 class UserListView(ListView):
     model = User
     paginate_by = 100
-
-
-class UserLoginView(View):
-    template_name = 'board/user_login.html'
-    form_class = UserLoginForm
-
-    def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, self.template_name, self.get_context_data())
-
-    def post(self, request: HttpRequest) -> HttpResponse:
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            user = auth.authenticate(
-                request,
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password'],
-            )
-            if user is not None:
-                auth.login(request, user)
-                return redirect('home')
-            message = 'Login failed!, username password mismatch'
-        else:
-            message = form.errors
-        return render(request, self.template_name, {**self.get_context_data(), 'message': message})
-
-    def get_context_data(self, **kwargs):
-        context = {
-            'form': self.form_class()
-        }
-        return context
-
-
-class UserLogoutView(views.LogoutView):
-    pass
 
 
 class PostCreateView(CreateView):

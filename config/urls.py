@@ -15,23 +15,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from board import views
+from board import views as board_views
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("board/", views.BoardView.as_view(), name="home"),
-    path("board/post/create/", views.PostCreateView.as_view(), name="post/create"),
-    path("board/post/list/", views.PostListView.as_view(), name="post/list"),
-    path("board/post/<int:pk>/", views.PostDetailView.as_view(), name="post/get"),
-    path("board/post/<int:pk>/update/", views.PostUpdateView.as_view(), name="post/update"),
-    path("board/comment/create/", views.CommentCreateView.as_view(), name="comment/create"),
-    path("board/comment/<int:pk>/update/", views.CommentUpdateView.as_view(), name="comment/update"),
-    path("board/reply/create/", views.ReplyCreateView.as_view(), name="reply/create"),
-    path("board/reply/<int:pk>/update/", views.ReplyUpdateView.as_view(), name="reply/update"),
-    path("board/user/create/", views.UserCreateView.as_view(), name="user/create"),
-    path("board/user/list/", views.UserListView.as_view(), name="user/list"),
-    path("board/user/login/", views.UserLoginView.as_view(), name="user/login"),
-    path("board/user/logout/", views.UserLogoutView.as_view(), name="user/logout"),
+    path("board/", board_views.BoardView.as_view(), name="home"),
+    path("board/post/create/", board_views.PostCreateView.as_view(), name="post/create"),
+    path("board/post/list/", board_views.PostListView.as_view(), name="post/list"),
+    path("board/post/<int:pk>/", board_views.PostDetailView.as_view(), name="post/get"),
+    path("board/post/<int:pk>/update/", board_views.PostUpdateView.as_view(), name="post/update"),
+    path("board/comment/create/", board_views.CommentCreateView.as_view(), name="comment/create"),
+    path("board/comment/<int:pk>/update/", board_views.CommentUpdateView.as_view(), name="comment/update"),
+    path("board/reply/create/", board_views.ReplyCreateView.as_view(), name="reply/create"),
+    path("board/reply/<int:pk>/update/", board_views.ReplyUpdateView.as_view(), name="reply/update"),
+    path("board/user/create/", board_views.UserCreateView.as_view(), name="user/create"),
+    path("board/user/list/", board_views.UserListView.as_view(), name="user/list"),
+    path("board/user/login/", auth_views.LoginView.as_view(), name="user/login"),
+    path("board/user/logout/", auth_views.LogoutView.as_view(), name="user/logout"),
 ]
