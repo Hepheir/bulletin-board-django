@@ -9,6 +9,12 @@ class UserCreateForm(forms.ModelForm):
         fields = ['username', 'password']
 
 
+class UserLoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
+
 class PostCreateForm(forms.ModelForm):
     class Meta:
         model = Post
