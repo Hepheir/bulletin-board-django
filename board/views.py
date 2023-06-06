@@ -1,3 +1,4 @@
+from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
@@ -26,6 +27,9 @@ class UserCreateView(CreateView):
     model = User
     form_class = UserCreateForm
     success_url = '/'
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        return super().form_valid(form)
 
 
 class UserListView(ListView):

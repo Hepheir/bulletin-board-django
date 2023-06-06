@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-3">
+    <div class="card my-3">
+        <div class="card-header">로그인</div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">로그인</button>
+            </form>
+        </div>
+        <div class="card-footer d-flex align-items-center">
+            <div class="ms-auto">
+                <a href="{% url 'user/create' %}">
+                    <button class="btn btn-outline-secondary" type="button">회원가입</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
