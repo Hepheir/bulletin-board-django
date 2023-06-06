@@ -1,4 +1,5 @@
-from django.contrib.auth import login, authenticate
+from django.contrib import auth
+from django.forms.models import BaseModelForm
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
@@ -28,6 +29,9 @@ class UserCreateView(CreateView):
     form_class = UserCreateForm
     success_url = '/'
 
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        return super().form_valid(form)
+
 
 class UserListView(ListView):
     model = User
@@ -44,12 +48,13 @@ class UserLoginView(View):
     def post(self, request: HttpRequest) -> HttpResponse:
         form = self.form_class(request.POST)
         if form.is_valid():
-            user = authenticate(
+            user = auth.authenticate(
+                request,
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password'],
             )
             if user is not None:
-                login(request, user)
+                auth.login(request, user)
                 return redirect('home')
             message = 'Login failed!, username password mismatch'
         else:

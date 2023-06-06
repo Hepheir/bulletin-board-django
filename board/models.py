@@ -1,69 +1,14 @@
 from __future__ import annotations
 
 from django.db import models
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 
-class UserManager(BaseUserManager):
-    def get_by_natural_key(self, username: str | None):
-        return super().get_by_natural_key(username)
-
-    def create_user(self, username: str | None, password: str | None) -> User:
-        if not username:
-            raise ValueError('username is required.')
-        user: User
-        user = self.model(username=username)
-        user.set_password(password)
-        user.save(using=self.db)
-        return user
-
-    def create_superuser(self, username: str | None, password: str | None) -> User:
-        user = self.create_user(username, password)
-        user.is_admin = True
-        user.save()
-        return user
-
-
-class UserAuth:
-    def authenticate(self, **kwargs) -> None | User:
-        username = kwargs.get('username')
-        password = kwargs.get('password')
-        try:
-            user: User = get_user_model().objects.get(username=username)
-        except:
-            return None
-        if user.check_password(password):
-            return user
-        else:
-            return None
-
-
-class User(AbstractBaseUser):
-    username = models.CharField(null=False, max_length=16, unique=True)
-    created_at = models.DateTimeField(null=False, auto_now_add=True)
-    is_admin = models.BooleanField(default=False)
-
-    objects = UserManager()
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
-
-    @property
-    def is_staff(self) -> bool:
-        return self.is_admin
-
+class User(AbstractUser):
     def __str__(self) -> str:
         return self.username
-
-    def has_perm(self, perm, obj=None):
-        return True
-
-    def has_module_perms(self, app_label):
-        return True
 
 
 class Post(models.Model):
