@@ -17,16 +17,31 @@
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">{{ comment.created_by.username }}</div>
                     <div>{{ comment.content }}</div>
-                    <a class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="{% url 'reply/create' %}">
-                        <small>답글 쓰기</small>
-                    </a>
+                    <small>
+                        <a class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover me-3"
+                            href="{% url 'reply/create' %}">
+                            답글 쓰기
+                        </a>
+                        <a class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover me-3"
+                            href="{% url 'comment/delete' comment.pk %}">
+                            삭제
+                        </a>
+                    </small>
                     <div class="my-2 me-auto">
                         <ul class="list-group list-group-flush">
                             {% for reply in comment.replies %}
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">{{ reply.created_by.username }}</div>
-                                    {{ reply.content }}
+                                    <div>{{ reply.content }}</div>
+                                    <div>
+                                        <small>
+                                            <a class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover me-3"
+                                                href="{% url 'reply/delete' reply.pk %}">
+                                                삭제
+                                            </a>
+                                        </small>
+                                    </div>
                                 </div>
                             </li>
                             {% endfor %}
@@ -48,6 +63,11 @@
         <div class="ms-3">
             <a href="{% url 'post/update' post.pk %}">
                 <button class="btn btn-outline-secondary" type="button">수정</button>
+            </a>
+        </div>
+        <div class="ms-3">
+            <a href="{% url 'post/delete' post.pk %}">
+                <button class="btn btn-outline-danger" type="button">삭제</button>
             </a>
         </div>
     </div>
