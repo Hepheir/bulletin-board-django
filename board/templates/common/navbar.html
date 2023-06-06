@@ -14,15 +14,21 @@
                     <a class="nav-link" href="{% url 'user/list' %}">사용자</a>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link disabled">
+                        <small>logged in as:</small> {{ user.username }}
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'post/create' %}">
                         <button class="btn btn-outline-secondary" type="button">포스트 쓰기</button>
                     </a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item me-auto">
-                    <a class="nav-link disabled">{{ user.username }}</a>
                 </li>
                 <li class="nav-item me-auto">
                     <a class="nav-link" href="{% url 'user/logout' %}">
@@ -33,11 +39,6 @@
                 <li class="nav-item me-auto">
                     <a class="nav-link" href="{% url 'user/login' %}">
                         <button class="btn btn-outline-secondary" type="button">로그인</button>
-                    </a>
-                </li>
-                <li class="nav-item me-auto">
-                    <a class="nav-link" href="{% url 'user/create' %}">
-                        <button class="btn btn-outline-secondary" type="button">회원가입</button>
                     </a>
                 </li>
                 {% endif %}
