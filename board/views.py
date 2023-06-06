@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.base import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
 from .forms import *
@@ -58,6 +58,11 @@ class PostUpdateView(UpdateView):
     success_url = '/'
 
 
+class PostDeleteView(DeleteView):
+    model = Post
+    success_url = '/'
+
+
 class CommentCreateView(CreateView):
     model = Comment
     form_class = CommentCreateForm
@@ -70,6 +75,11 @@ class CommentUpdateView(UpdateView):
     success_url = '/'
 
 
+class CommentDeleteView(DeleteView):
+    model = Comment
+    success_url = '/'
+
+
 class ReplyCreateView(CreateView):
     model = Reply
     form_class = ReplyCreateForm
@@ -79,4 +89,9 @@ class ReplyCreateView(CreateView):
 class ReplyUpdateView(UpdateView):
     model = Reply
     form_class = ReplyUpdateForm
+    success_url = '/'
+
+
+class ReplyDeleteView(DeleteView):
+    model = Reply
     success_url = '/'
