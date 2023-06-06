@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth import views
 from django.forms.models import BaseModelForm
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
@@ -66,6 +67,10 @@ class UserLoginView(View):
             'form': self.form_class()
         }
         return context
+
+
+class UserLogoutView(views.LogoutView):
+    pass
 
 
 class PostCreateView(CreateView):
